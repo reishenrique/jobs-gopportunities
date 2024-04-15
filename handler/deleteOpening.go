@@ -1,13 +1,35 @@
 package handler
 
 import (
+	"fmt"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
+	"github.com/reishenrique/job-gopportunities/schemas"
 )
 
 func DeleteOpeningHandler(ctx *gin.Context) {
-	ctx.JSON(http.StatusOK, gin.H {
-		"message": "Delete Opening",
-	})
+	id := ctx.Query("id")
+
+	if id == "" {
+		sendError(ctx, http.StatusBadRequest, errParamIsRequired("id", 
+		"queryParameter").Error())
+		return
+	}
+
+	opening := schemas.Opening{}	
+	
+	// Find opening by id
+	if err := db.First(&opening, id).Error; err != nil {
+		sendError(ctx, http.StatusNotFound, fmt.Sprintf("opening with id: %v not found", id))
+		return
+	}
+
+	// Deleting opening with non-existent id
+	if err := db.Delete(&opening).Error; err != nil {
+		sendError(ctx, http.StatusInternalServerError, fmt.Sprintf("error delete opening with id: %v", id))
+		return
+	}
+
+	sendSuccess(ctx, "delete-opening", opening)
 }
