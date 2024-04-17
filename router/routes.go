@@ -17,7 +17,7 @@ func initializeRoutes(router *gin.Engine) {
 
 	docs.SwaggerInfo.BasePath = basePath
 	
-	v1 := router.Group("basePath")
+	v1 := router.Group(basePath)
 
 	{
 		v1.POST("/opening", handler.CreateOpeningHandler)
