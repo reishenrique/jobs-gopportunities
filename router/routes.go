@@ -2,7 +2,8 @@ package router
 
 import (
 	"github.com/gin-gonic/gin"
-	handler "github.com/reishenrique/job-gopportunities/handler/opening"
+	openingHandler "github.com/reishenrique/job-gopportunities/handler/opening"
+	recruiterHandler "github.com/reishenrique/job-gopportunities/handler/recruiter"
 
 	docs "github.com/reishenrique/job-gopportunities/docs"
 	swaggerfiles "github.com/swaggo/files"
@@ -11,7 +12,8 @@ import (
 
 func initializeRoutes(router *gin.Engine) {
 	// Initialize handler
-	handler.InitializeHandler()
+	openingHandler.InitializeHandler()
+	recruiterHandler.InitializeRecruiterHandler()
 
 	basePath := "/api/v1"
 
@@ -20,15 +22,19 @@ func initializeRoutes(router *gin.Engine) {
 	v1 := router.Group(basePath)
 
 	{
-		v1.POST("/opening", handler.CreateOpeningHandler)
-
-		v1.GET("/opening", handler.ShowOpeningHandler)
-
-		v1.PUT("/opening", handler.UpdateOpeningHandler)
-
-		v1.DELETE("/opening", handler.DeleteOpeningHandler)
-
-		v1.GET("/openings", handler.ListOpeningsHandler)
+		v1.POST("/opening", openingHandler.CreateOpeningHandler)
+		v1.GET("/opening", openingHandler.ShowOpeningHandler)
+		v1.PUT("/opening", openingHandler.UpdateOpeningHandler)
+		v1.DELETE("/opening", openingHandler.DeleteOpeningHandler)
+		v1.GET("/openings", openingHandler.ListOpeningsHandler)
+	}
+	
+	{
+		v1.POST("/recruiter", recruiterHandler.CreateRecruiterHandler)
+		v1.GET("/recruiter")
+		v1.PUT("/recruiter")
+		v1.DELETE("/recruiter")
+		v1.GET("/recruiters")
 	}
 
 	// Initialize Swagger
