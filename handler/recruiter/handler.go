@@ -1,4 +1,4 @@
-package handler
+package recruiter
 
 import (
 	"github.com/reishenrique/job-gopportunities/config"

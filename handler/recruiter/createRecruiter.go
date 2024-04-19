@@ -1,4 +1,4 @@
-package handler
+package recruiter
 
 import (
 	"net/http"
@@ -28,7 +28,7 @@ func CreateRecruiterHandler(ctx *gin.Context) {
 	}
 
 	if err := db.Create(&recruiter).Error; err != nil {
-		logger.Errorf("Error creating opening: %v", err.Error())
+		logger.Errorf("Error creating recruiter: %v", err.Error())
 		sendError(ctx, http.StatusInternalServerError, "error saving recruiter to the database")
 		return
 	}
