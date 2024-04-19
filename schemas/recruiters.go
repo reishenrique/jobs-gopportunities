@@ -20,7 +20,7 @@ type RecruitersResponse struct {
 	ID uint `json:"id"`
 	CreatedAt time.Time `json:"createdAt"`
 	UpdatedAt time.Time `json:"UpdatedAt"`
-	DeletedAt time.Time `json:"DeletedAt"`
+	DeletedAt time.Time `json:"DeletedAt,omitempty"`
 	FullName string `json:"fullName"`
 	Recruiter bool `json:"recruiter"`
 	CompanyName string `json:"companyName"`
