@@ -1,4 +1,4 @@
-package handler
+package opening
 
 import (
 	"github.com/reishenrique/job-gopportunities/config"
