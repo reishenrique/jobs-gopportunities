@@ -3,7 +3,7 @@
 - Platform built using Golang to manage job postings efficiently. This API leverages cutting-edge technologies and follows best practices to ensure reliability, scalability, and maintainability.
 
 ## Technologies Used: 
-[__Golang:__]((https://golang.org/)) The core programming languaged used to develop the API, renowned for its performance and concurrency support.
+[__Golang:__](https://golang.org/) The core programming languaged used to develop the API, renowned for its performance and concurrency support.
 
 [__Go-Gin:__](https://github.com/gin-gonic/gin) A lightweight and flexible HTTP web framework used as the router, prividing powerful routing capabilities and middleware support.
 
