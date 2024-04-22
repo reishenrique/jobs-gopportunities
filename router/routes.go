@@ -34,7 +34,7 @@ func initializeRoutes(router *gin.Engine) {
 		v1.GET("/recruiter", recruiterHandler.ShowRecruiterHandler)
 		v1.PUT("/recruiter")
 		v1.DELETE("/recruiter", recruiterHandler.DeleteRecruiterHandler)
-		v1.GET("/recruiters")
+		v1.GET("/recruiters", recruiterHandler.ListRecruitersHandler)
 	}
 
 	// Initialize Swagger
