@@ -7,6 +7,20 @@ import (
 	"github.com/reishenrique/job-gopportunities/schemas"
 )
 
+// @BasePath /api/v1
+
+// @Summary Update recruiter
+// @Description Update a recruiter
+// @Tags Recruiters
+// @Accept json
+// @Produce json
+// @Param id query string true "Recruiter Identification"
+// @Param opening body UpdateRecruiterRequest true "Recruiter data to Update"
+// @Success 200 {object} UpdateRecruiterResponse
+// @Failure 400 {object} ErrorResponse
+// @Failure 404 {object} ErrorResponse
+// @Failure 500 {object} ErrorResponse
+// @Router /recruiter [put]
 func UpdateRecruiterHandler(ctx *gin.Context) {
 	request := UpdateRecruiterRequest{}
 

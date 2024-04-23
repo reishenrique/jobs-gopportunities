@@ -8,6 +8,18 @@ import (
 	"github.com/reishenrique/job-gopportunities/schemas"
 )
 
+// @BasePath /api/v1
+
+// @Summary Show recruiter
+// @Description Show a recruiter by id
+// @Tags Recruiters
+// @Accept json
+// @Produce json
+// @Param id query string true "Recruiter identification"
+// @Success 200 {object} ShowRecruiterResponse
+// @Failure 400 {object} ErrorResponse
+// @Failure 404 {object} ErrorResponse
+// @Router /recruiter [get]
 func ShowRecruiterHandler(ctx *gin.Context) {
 	id := ctx.Query("id")
 

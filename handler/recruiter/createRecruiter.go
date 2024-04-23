@@ -7,6 +7,18 @@ import (
 	"github.com/reishenrique/job-gopportunities/schemas"
 )
 
+// @BasePath /api/v1
+
+// @Summary Create recruiter
+// @Description Create a new recruiter as a user
+// @Tags Recruiters
+// @Accept json
+// @Produce json
+// @Param request body CreateRecruiterRequest true "Request body"
+// @Success 200 {object} CreateRecruiterResponse
+// @Failure 400 {object} ErrorResponse
+// @Failure 500 {object} ErrorResponse
+// @Router /recruiter [post]
 func CreateRecruiterHandler(ctx *gin.Context) {
 	request := CreateRecruiterRequest{}
 
