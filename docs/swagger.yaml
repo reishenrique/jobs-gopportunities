@@ -1,5 +1,5 @@
 definitions:
-  handler.CreateOpeningRequest:
+  opening.CreateOpeningRequest:
     properties:
       company:
         type: string
@@ -14,28 +14,28 @@ definitions:
       salary:
         type: integer
     type: object
-  handler.CreateOpeningResponse:
+  opening.CreateOpeningResponse:
     properties:
       data:
         $ref: '#/definitions/schemas.OpeningResponse'
       message:
         type: string
     type: object
-  handler.DeleteOpeningResponse:
+  opening.DeleteOpeningResponse:
     properties:
       data:
         $ref: '#/definitions/schemas.OpeningResponse'
       message:
         type: string
     type: object
-  handler.ErrorResponse:
+  opening.ErrorResponse:
     properties:
       data:
         type: string
       message:
         type: string
     type: object
-  handler.ListOpeningsResponse:
+  opening.ListOpeningsResponse:
     properties:
       data:
         items:
@@ -44,14 +44,14 @@ definitions:
       message:
         type: string
     type: object
-  handler.ShowOpeningResponse:
+  opening.ShowOpeningResponse:
     properties:
       data:
         $ref: '#/definitions/schemas.OpeningResponse'
       message:
         type: string
     type: object
-  handler.UpdateOpeningRequest:
+  opening.UpdateOpeningRequest:
     properties:
       company:
         type: string
@@ -66,10 +66,84 @@ definitions:
       salary:
         type: integer
     type: object
-  handler.UpdateOpeningResponse:
+  opening.UpdateOpeningResponse:
     properties:
       data:
         $ref: '#/definitions/schemas.OpeningResponse'
+      message:
+        type: string
+    type: object
+  recruiter.CreateRecruiterRequest:
+    properties:
+      company_email:
+        type: string
+      company_name:
+        type: string
+      company_website:
+        type: string
+      full_name:
+        type: string
+      phone:
+        type: integer
+      recruiter:
+        type: boolean
+    type: object
+  recruiter.CreateRecruiterResponse:
+    properties:
+      data:
+        $ref: '#/definitions/schemas.RecruitersResponse'
+      message:
+        type: string
+    type: object
+  recruiter.DeleteRecruiterResponse:
+    properties:
+      data:
+        $ref: '#/definitions/schemas.RecruitersResponse'
+      message:
+        type: string
+    type: object
+  recruiter.ErrorResponse:
+    properties:
+      data:
+        type: string
+      message:
+        type: string
+    type: object
+  recruiter.ListRecruitersResponse:
+    properties:
+      data:
+        items:
+          $ref: '#/definitions/schemas.RecruitersResponse'
+        type: array
+      message:
+        type: string
+    type: object
+  recruiter.ShowRecruiterResponse:
+    properties:
+      data:
+        $ref: '#/definitions/schemas.RecruitersResponse'
+      message:
+        type: string
+    type: object
+  recruiter.UpdateRecruiterRequest:
+    properties:
+      company_email:
+        type: string
+      company_name:
+        type: string
+      company_website:
+        type: string
+      full_name:
+        type: string
+      phone:
+        type: integer
+      recruiter:
+        type: boolean
+    type: object
+  recruiter.UpdateRecruiterResponse:
+    properties:
+      data:
+        $ref: '#/definitions/schemas.RecruitersResponse'
       message:
         type: string
     type: object
@@ -96,6 +170,29 @@ definitions:
       updatedAt:
         type: string
     type: object
+  schemas.RecruitersResponse:
+    properties:
+      DeletedAt:
+        type: string
+      UpdatedAt:
+        type: string
+      companyEmail:
+        type: string
+      companyName:
+        type: string
+      companyWebsite:
+        type: string
+      createdAt:
+        type: string
+      fullName:
+        type: string
+      id:
+        type: integer
+      phone:
+        type: integer
+      recruiter:
+        type: boolean
+    type: object
 info:
   contact: {}
 paths:
@@ -116,15 +213,15 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/handler.DeleteOpeningResponse'
+            $ref: '#/definitions/opening.DeleteOpeningResponse'
         "400":
           description: Bad Request
           schema:
-            $ref: '#/definitions/handler.ErrorResponse'
+            $ref: '#/definitions/opening.ErrorResponse'
         "404":
           description: Not Found
           schema:
-            $ref: '#/definitions/handler.ErrorResponse'
+            $ref: '#/definitions/opening.ErrorResponse'
       summary: Delete opening
       tags:
       - Openings
@@ -144,15 +241,15 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/handler.ShowOpeningResponse'
+            $ref: '#/definitions/opening.ShowOpeningResponse'
         "400":
           description: Bad Request
           schema:
-            $ref: '#/definitions/handler.ErrorResponse'
+            $ref: '#/definitions/opening.ErrorResponse'
         "404":
           description: Not Found
           schema:
-            $ref: '#/definitions/handler.ErrorResponse'
+            $ref: '#/definitions/opening.ErrorResponse'
       summary: Show opening
       tags:
       - Openings
@@ -166,22 +263,22 @@ paths:
         name: request
         required: true
         schema:
-          $ref: '#/definitions/handler.CreateOpeningRequest'
+          $ref: '#/definitions/opening.CreateOpeningRequest'
       produces:
       - application/json
       responses:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/handler.CreateOpeningResponse'
+            $ref: '#/definitions/opening.CreateOpeningResponse'
         "400":
           description: Bad Request
           schema:
-            $ref: '#/definitions/handler.ErrorResponse'
+            $ref: '#/definitions/opening.ErrorResponse'
         "500":
           description: Internal Server Error
           schema:
-            $ref: '#/definitions/handler.ErrorResponse'
+            $ref: '#/definitions/opening.ErrorResponse'
       summary: Create opening
       tags:
       - Openings
@@ -200,26 +297,26 @@ paths:
         name: opening
         required: true
         schema:
-          $ref: '#/definitions/handler.UpdateOpeningRequest'
+          $ref: '#/definitions/opening.UpdateOpeningRequest'
       produces:
       - application/json
       responses:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/handler.UpdateOpeningResponse'
+            $ref: '#/definitions/opening.UpdateOpeningResponse'
         "400":
           description: Bad Request
           schema:
-            $ref: '#/definitions/handler.ErrorResponse'
+            $ref: '#/definitions/opening.ErrorResponse'
         "404":
           description: Not Found
           schema:
-            $ref: '#/definitions/handler.ErrorResponse'
+            $ref: '#/definitions/opening.ErrorResponse'
         "500":
           description: Internal Server Error
           schema:
-            $ref: '#/definitions/handler.ErrorResponse'
+            $ref: '#/definitions/opening.ErrorResponse'
       summary: Update opening
       tags:
       - Openings
@@ -234,12 +331,155 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/handler.ListOpeningsResponse'
+            $ref: '#/definitions/opening.ListOpeningsResponse'
         "500":
           description: Internal Server Error
           schema:
-            $ref: '#/definitions/handler.ErrorResponse'
+            $ref: '#/definitions/opening.ErrorResponse'
       summary: List openings
       tags:
       - Openings
+  /recruiter:
+    delete:
+      consumes:
+      - application/json
+      description: Delete a recruiter by id
+      parameters:
+      - description: Recruiter identification
+        in: query
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/recruiter.DeleteRecruiterResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/recruiter.ErrorResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/recruiter.ErrorResponse'
+      summary: Delete recruiter
+      tags:
+      - Recruiters
+    get:
+      consumes:
+      - application/json
+      description: Show a recruiter by id
+      parameters:
+      - description: Recruiter identification
+        in: query
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/recruiter.ShowRecruiterResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/recruiter.ErrorResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/recruiter.ErrorResponse'
+      summary: Show recruiter
+      tags:
+      - Recruiters
+    post:
+      consumes:
+      - application/json
+      description: Create a new recruiter as a user
+      parameters:
+      - description: Request body
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/recruiter.CreateRecruiterRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/recruiter.CreateRecruiterResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/recruiter.ErrorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/recruiter.ErrorResponse'
+      summary: Create recruiter
+      tags:
+      - Recruiters
+    put:
+      consumes:
+      - application/json
+      description: Update a recruiter
+      parameters:
+      - description: Recruiter Identification
+        in: query
+        name: id
+        required: true
+        type: string
+      - description: Recruiter data to Update
+        in: body
+        name: opening
+        required: true
+        schema:
+          $ref: '#/definitions/recruiter.UpdateRecruiterRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/recruiter.UpdateRecruiterResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/recruiter.ErrorResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/recruiter.ErrorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/recruiter.ErrorResponse'
+      summary: Update recruiter
+      tags:
+      - Recruiters
+  /recruiters:
+    get:
+      consumes:
+      - application/json
+      description: List all recruiters
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/recruiter.ListRecruitersResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/recruiter.ErrorResponse'
+      summary: List recruiter
+      tags:
+      - Recruiters
 swagger: "2.0"
