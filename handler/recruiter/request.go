@@ -42,3 +42,26 @@ func (r *CreateRecruiterRequest) Validate() error {
 
 	return nil
 }
+
+// UpdateRecruiter
+type UpdateRecruiterRequest struct {
+	FullName string `json:"full_name"`
+	Recruiter *bool `json:"recruiter"`
+	CompanyName string `json:"company_name"`
+	CompanyEmail string	`json:"company_email"`
+	CompanyWebsite string `json:"company_website"`
+	Phone int64 `json:"phone"`
+}
+
+func (r *UpdateRecruiterRequest) Validate() error {
+	if r.FullName != "" || 
+	r.Recruiter != nil || 
+	r.CompanyName != "" || 
+	r.CompanyEmail != ""  ||
+	r.CompanyWebsite != "" || 
+	r.Phone > 0 {
+		return nil
+	}
+
+	return fmt.Errorf("at least one valid field must be provided")
+}
